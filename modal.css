@@ -66,6 +66,9 @@ img {
   color: #ffffff;
   border-radius: 15px;
 }
+span.border {
+  border-bottom: 1px solid white; /*souligner la nav*/
+}
 
 .topnav .icon {
   display: none;
@@ -85,34 +88,6 @@ img {
     padding: 19px 9px;
   }
 } /**/
-
-@media screen and (max-width: 768px) {
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {
-    position: relative;
-    /*collumn*/
-    flex-direction: column;
-  }
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 60px; /*aligner l'icon à voir*/
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
 
 main {
   font-size: 130%;
@@ -491,6 +466,16 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
 @media screen and (max-width: 800px) {
   /*logo*/
   .logo,
@@ -540,25 +525,51 @@ footer {
     text-align: center;
   }
 }
-
-@keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
+@media screen and (max-width: 768px) {
+  .topnav.responsive {
+    position: relative;
+    /*collumn*/
+    flex-direction: column;
   }
-  to {
-    opacity: 1;
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 60px; /*aligner l'icon à voir*/
   }
-}
-
-@media screen and (max-width: 540px) {
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
   .topnav a {
     display: none;
   }
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -60px;
+    margin-top: -65px;
+    color: #f10c0c; /**/
+    background-color: #fff;
+  }
+
+  a.icon {
+    background: #fff; /**/
+  }
+}
+
+@media screen and (max-width: 540px) {
+  a.icon {
+    background: #fff;
+  }
+  .topnav a.icon {
+    display: none;
+    color: #f10c0c; /**/
+    background-color: #fff;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: -65px;
     /*margin-top: -15px;*/
   }
   .bground > .content {
@@ -567,10 +578,22 @@ footer {
     border-radius: 10px 10px 0 0;
     margin-bottom: 0;
   }
-  .topnav {
-    margin: 0;
-  }
+
   .bground {
-    background-color: transparent; /*à verifier*/
+    background-color: transparent; /**/
+  }
+  /*main hero-headline*/
+  .hero-headline {
+    font-size: 2.3rem;
+  }
+  .hero-text {
+    font-size: 0.8rem;
+    margin-top: 28px;
+  }
+  /*formulaire*/
+  label,
+  .text-label {
+    font-size: 12px;
+    margin-top: 5px;
   }
 }
