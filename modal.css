@@ -409,6 +409,8 @@ input[data-error]::after {
   min-width: 424px;
   display: flex;
   flex-direction: column;
+  align-items: baseline;
+  justify-content: space-around;
 }
 .hero-content::after {
   content: "";
@@ -438,7 +440,7 @@ input[data-error]::after {
   outline: none;
   text-transform: capitalize;
   font-size: 1.3rem;
-  padding: 15px 23px;
+  padding: 12px 40px;
   margin: 0;
   margin-top: 59px;
 }
@@ -474,6 +476,14 @@ footer {
   }
   to {
     opacity: 1;
+  }
+}
+@media screen and (max-width: 992px) {
+  .hero-headline {
+    font-size: 5rem;
+  }
+  .hero-img img {
+    object-fit: cover;
   }
 }
 @media screen and (max-width: 800px) {
@@ -595,5 +605,9 @@ footer {
   .text-label {
     font-size: 12px;
     margin-top: 5px;
+  }
+  .copyrights {
+    margin-top: -20px;
+    font-size: 0.8rem;
   }
 }
