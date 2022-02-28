@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet"/>
   </head>
   <body>
-    <!------- NAV BAR ------->
+   <!-- NAV BAR -->
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
         <img alt="logo" src="img/Logo.png"/>
@@ -22,7 +22,7 @@
         <a href="javascript:void(0);" class="icon" onclick="editNav()"><i class="fa fa-bars"></i></a>
       </div>
     </div>
-   <!------- HERO SECTION ------->
+  <!-- HERO SECTION -->
     <main>
       <div class="hero-section">
         <div class="hero-content">
@@ -36,17 +36,17 @@
         <div class="hero-img"><img src="img/bg_img.jpg" alt="img" /></div>
         <button class="btn-signup modal-btn">je m'inscris</button>
       </div>
-      <!------- MODAL SECTION ------->
+     <!-- MODAL SECTION -->
       <div class="bground">
         <div class="content">
           <span class="close"></span>
         <div class="modal-body">
             <!--Form-->
-            <form id="form" name="reserve" action="index.html" method="get" onsubmit="return validate();">
+            <form id="form" name="reserve" action="index.html" novalidate method="get" onsubmit="formValidation();">
               <div class="formData">
                 <label for="first">Prénom</label><br>
                 <input class="text-control" type="text" id="first" name="first" minlength="2"/><br>
-                <div class="error" id="errorFirst"></div>  
+                <div class="error"></div>  
               </div>
               <div class="formData">
                 <label for="last">Nom</label><br>
@@ -56,18 +56,18 @@
               <div class="formData">
                 <label for="email">E-mail</label><br>
                 <input class="text-control" type="email" id="email"  name="email"/><br>
-                <div class="error" id="errorEmail"></div> 
+                <div class="error"></div> 
               </div>
               <div class="formData">
                 <label for="birthdate">Date de naissance</label><br>
                 <input class="text-control" type="date" id="birthdate" name="birthdate"/><br>
-                <div class="error" id="errorBirthdate"></div> 
+                <div class="error"></div> 
               </div>
               <div class="formData">
-                <label for="quantity">À combien de tournois <!--GameOn--> avez-vous déjà participé ?</label>
+                <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label>
                 <br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
-                <div class="error" id="errorQuantity"></div> 
+                <div class="error"></div> 
               </div>
 
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
@@ -96,33 +96,46 @@
                 <label class="checkbox-label" for="location6">
                     <span class="checkbox-icon"></span>Portland
                 </label>
-                <div class="error" id="errorLocation"></div> 
+                <div class="error"></div> 
               </div>
                 <div class="formData">
-                  <input class="checkbox-input" type="checkbox" id="checkbox1" checked required/>
+                  <input class="checkbox-input" type="checkbox" id="checkbox1"/>
                   <label class="checkbox2-label" for="checkbox1"><span class="checkbox-icon">
                     </span>J'ai lu et accepté les conditions d'utilisation.
                   </label><br>
                   <input class="checkbox-input" type="checkbox" id="checkbox2"/>
                   <label class="checkbox2-label" for="checkbox2">
-                    <span class="checkbox-icon"></span>Je Je souhaite être prévenu des prochains évènements.
+                    <span class="checkbox-icon"></span>Je souhaite être prévenu des prochains évènements.
                   </label><br>
-                  <div class="error" id="errorCheck"></div> 
+                  <div class="error"></div> 
               </div>
-                <input class="btn-submit" type="submit" id="registration"  value="C'est parti"/>
+              <button class="btn-submit" type="submit" class="button">C'est parti</button>
             </form>
-            <span id="error"></span>
           </div>
+          <div class="message-valid"></div>
+        </div>
+      </div>
+       <!--confirmation-->
+       <div class="container-confirmation-submit">
+        <div class="submitted-form">
+          <span class="close-modal-submit"></span>
+          <p>
+            Merci !
+            <br>
+            Votre réservation a été reçue.
+          </p>
+          <button id="close-btn-confirmation"> Fermer
+          </button>
         </div>
       </div>
     </main>
-    <!------- FOOTER ------->
-   <footer>
-     <p class="copyrights">
-       Copyright 2014 - 2022, GameOn Inc.
-     </p>
-   </footer>
-    <!------- SCRIPTS ------->
-   <script src="modal.js"></script>
- </body>
+    <!-- FOOTER -->
+    <footer>
+      <p class="copyrights">
+        Copyright 2014 - 2022, GameOn Inc.
+      </p>
+    </footer>
+    <!-- SCRIPTS -->
+    <script src="modal.js"></script>
+  </body>
 </html>

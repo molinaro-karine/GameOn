@@ -1,132 +1,221 @@
+// AFFICHAGE NAV
 function editNav() {
-	var x = document.getElementById("myTopnav");
-	if (x.className === "topnav") {
-	  x.className += " responsive";
-	} else {
-	  x.className = "topnav";
-	}
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
   }
-  
-  // DOM Elements
-  const modalbg = document.querySelector(".bground");
-  const modalBtn = document.querySelectorAll(".modal-btn");
-  const formData = document.querySelectorAll(".formData");
-  const span = document.querySelector(".close");
-  
-  // launch modal event
-  modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-  
-  // Lancement formulaire (display en block)
-  function launchModal() {
-	modalbg.style.display = "block";
+}
+
+// DOM Elements
+const modalbg = document.querySelector(".bground");
+const modalBtn = document.querySelectorAll(".modal-btn");
+const formData = document.querySelectorAll(".formData");
+const span = document.querySelector(".close");
+const closeBtn = document.getElementsByClassName('close');
+
+// launch modal event
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
+// Lancement formulaire (display en block)
+function launchModal() {
+  modalbg.style.display = "block";
+}
+
+// Fermer le formulaire 
+function closeModal() {
+	modalbg.style.display = 'none';
   }
-  
-  // Fermer le formulaire 
-  span.onclick = function() {
-	modalbg.style.display = "none";
+closeBtn[0].addEventListener('click', closeModal);
+
+
+//form elements
+const form = document.getElementById("form");
+const firstName = document.getElementById ('first');
+const lastName = document.getElementById ('last');
+const email = document.getElementById ('email');
+const birthdate = document.getElementById ('birthdate');
+const quantity = document.getElementById ('quantity');
+const city = document.getElementById ('location1');
+const checkbox1 = document.getElementById ('checkbox1');
+const response = document.getElementById('error')
+
+// Form fields validation
+function validFirstName(){
+ if (firstName.value.trim() === '') {
+	setError(firstName, 'Veuillez entrer un prénom.');
+	 return false;
+
+}else if (firstName.value.length <= 2){
+	setError(firstName, 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.');
+	return false;
+}
+setSuccess(firstName);
+   return true;}
+
+
+function validLastName(){
+if (lastName.value.trim()=== '') {
+	setError(lastName, 'Veuillez entrer un nom.');
+	return false;
+
+}else if(lastName.value.length <= 1){
+	setError(lastName, 'Veuillez entrer 2 caractères ou plus pour le champ du nom.');
+	return false;
+}
+   setSuccess(lastName);
+   return true;
+	
+}
+
+function validEmail(){
+let mailRegex = /^[a-zA-Z][a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/;
+if(email.value ==='') {
+	setError(email, 'Veuillez entrer une adresse email')
+	return false;
+}else if (!email.value.match(mailRegex)){
+	setError(email, 'Veuillez entrer une adresse email valide.');
+	return true;
+}
+	setSuccess(email);
+	return true;
+	
+}
+
+function validBirthdate(){
+let regexBirthdate = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+if( (!birthdate.value)) {
+	setError(birthdate, 'Vous devez entrer votre date de naissance.');
+	return false;
+}else if (birthdate.value.match(!regexBirthdate)){
+	setError(birthdate, 'Veuillez entrer une date de naissance valide.');
+	return false;
+}
+	setSuccess(birthdate);
+	return true;
+	
+}
+
+function validQuantity(){
+if (!quantity.value) {
+	setError(quantity, 'Veuillez renseigner à combien de tournois vous avez participé.');
+	return false;
+} 
+	setSuccess(quantity);
+		return true;
+}
+function validLocation(){
+let radioCheck = document.querySelector('input[name = "location"]:checked');
+if(radioCheck === null){
+	setError(city, 'Vous devez choisir une option.');
+	return false;
+}
+	setSuccess(city);
+		return true;
+}
+
+
+function validCheckBox() {
+if (checkbox1.checked === false) {
+	setError(checkbox1, 'Vous devez vérifier que vous acceptez les termes et conditions.');
+	return false;
+}
+	setSuccess(checkbox1);
+	return true;
+}
+
+
+// Form field events
+function formFieldsValidation(element, method, event) {
+    element.addEventListener(event, method);
+}
+
+// Form validation
+function forAllFieldsValidation() {
+
+	validFirstName();
+	validLastName();
+	validEmail();
+	validBirthdate();
+	validQuantity();
+	validLocation();
+	validCheckBox();
   }
+  function formValidation() {
+if (validFirstName() === true &&
+	validLastName() === true &&
+	validEmail() === true &&
+	validBirthdate() === true &&
+	validQuantity() === true &&
+    validLocation() === true &&
+    validCheckBox() === true) {
+    return true;
+}
+    return false;
+}
+
+
+// Send form
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (formValidation() == true) {
+        displayModalSubmit();
+		console.log(e);
+        document.querySelector('form').reset();
+    } else {
+        forAllFieldsValidation();
+    }
+});
   
-  
-  // form elements
-  const form = document.getElementById("form");
-  const firstName = document.getElementById ('first');
-  const lastName = document.getElementById ('last');
-  const email = document.getElementById ('email');
-  const birthdate = document.getElementById ('birthdate');
-  const quantity = document.getElementById ('quantity');
-  //const villes = document.getElementById ('location');
-  const CGV = document.getElementById ('checkbox1');
-  
-  //Création expression reguliere
-  const regexEmail = /^([a-zA-Z0-9_\.\-]+)@([a-zA-Z0-9_\.\-]+)\.([a-zA-Z]{2,5})$/;
-  
-  //Fonction pour empêcher le formulaire de se soumettre automatiquement
-  form.addEventListener('submit', (e) =>{
-	  e.preventDefault();
-  
-	  validateInputs();
-	  
-  })
-  
-  
-  
-  const validateInputs = () =>{
-	  //trim pour supprimer les espaces blancs
-   const firstNameValue = firstName.value.trim();
-   const lastNameValue = lastName.value.trim();
-   const emailValue = email.value.trim();
-   const birthdateValue = birthdate.value.trim();
-   const quantityValue = quantity.value.trim();
-   //const villesValue = villes.value.trim();
-   const checkbox1Value = checkbox1.value.trim();
-  
-   //Création expression reguliere
-  let regexEmail = /^([a-zA-Z0-9_\.\-]+)@([a-zA-Z0-9_\.\-]+)\.([a-zA-Z]{2,5})$/;
-  let regexBirthdate = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
-  
-   if (firstNameValue === '') {
-	   setError (firstName, 'Le champ prénom est requis');
-  
-  }else if (firstNameValue.length <= 1){
-	  setError(firstName, 'Veuillez entrer 2 caratères ou plus.')
-  }else {
-	  setSuccess(firstName);
+//Set error or success states for input checks
+const setError = (element, message) => {
+	const formData = element.parentElement;
+	const errorDisplay = formData.querySelector('.error');
+
+	errorDisplay.innerText = message;
+}
+const setSuccess = element =>{
+	const error =element.parentElement;
+	const errorDisplay = error.querySelector('.error');
+
+	errorDisplay.innerText = '';
+	error.classList.add('success');
+	error.classList.remove('error');
+};
+
+
+//Dom elements submitted confirmation
+const modalSubmit = document.getElementsByClassName('container-confirmation-submit');
+const closeModalSubmit = document.getElementsByClassName('close-modal-submit');
+const closeBtnConfirmation = document.getElementById('close-btn-confirmation');
+
+//Submitted confirmation //
+function displayModalSubmit() {
+    modalbg.style.display = 'none';
+    modalSubmit[0].style.display = 'block';
+}
+
+// Close submit
+function closeSubmit() {
+    modalSubmit[0].style.display = 'none';
   }
+
+//close modal submit 
+closeModalSubmit[0].addEventListener('click', closeSubmit);
+closeBtnConfirmation.addEventListener('click', closeSubmit);
+
+
+
+
+ 
+
+
+
+
+	
+	
+	
+
+
   
-  if (lastNameValue === '') {
-	  setError(lastName, 'Le champ nom est requis');
-  
-  }else if(lastNameValue.length <= 1){
-	  setError(lastName, 'Veuillez entrer 2 caratères ou plus.')
-  }else{
-	 setSuccess(lastName);
-  }
-  
-  if(emailValue ==='') {
-	  setError(email, 'Renseigner un email');
-  }else if (!regexEmail.test(emailValue)){
-	  setError(email, 'Renseigner une adresse email valide.');
-  }else {
-	  setSuccess(email);
-  }
-  
-  if(birthdateValue.trim().length !== 10) {
-	  setError(birthdate, 'Renseigner une date ');
-  }else if (!regexBirthdate.test(birthdateValue)){
-	  setError(birthdate, 'Renseigner une date valide.');
-  }else {
-	  setSuccess(birthdate);
-  }
-  
-  
-  if (quantity.value.trim().length === 0 || isNaN(quantity.value.trim()) === true || quantity.value.trim() < 0) {
-	  setError(quantity, 'Renseigner une quantité.');
-  }else{
-	  setSuccess(quantity);
-  }
-  
-  if(checkbox1Value.checked === false) {
-	  
-	  setError(checkbox1, 'Renseigner une adresse email valide.');
-  }else {
-	  setSuccess(checkbox1);
-  }
-  
-  };
-  //Définir les états d'erreur ou de réussite des contrôles d'entrée
-  const setError = (element, message) => {
-	  const formData = element.parentElement;
-	  const errorDisplay = formData.querySelector('.error');
-  
-	  errorDisplay.innerText = message;
-	  error.classList.add('error');
-	  error.classList.remove('success')
-  }
-  const setSuccess = element =>{
-	  const error =element.parentElement;
-	  const errorDisplay = error.querySelector('.error');
-  
-	  errorDisplay.innerText = '';
-	  error.classList.add('success');
-	  error.classList.remove('error');
-  };
