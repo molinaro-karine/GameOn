@@ -1,4 +1,4 @@
-// AFFICHAGE NAV
+// Edit Nav
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -12,22 +12,23 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const span = document.querySelector(".close");
+const closeModalBtn = document.querySelectorAll("#close");
 const closeBtn = document.getElementsByClassName('close');
+
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// Lancement formulaire (display en block)
+// Launch modal form
 function launchModal() {
   modalbg.style.display = "block";
 }
 
-// Fermer le formulaire 
+// close modal form
 function closeModal() {
 	modalbg.style.display = 'none';
   }
-closeBtn[0].addEventListener('click', closeModal);
+closeModalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
 
 //form elements
@@ -84,11 +85,11 @@ if(email.value ==='') {
 }
 
 function validBirthdate(){
-let regexBirthdate = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+const regexBirthdate = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 if( (!birthdate.value)) {
 	setError(birthdate, 'Vous devez entrer votre date de naissance.');
 	return false;
-}else if (birthdate.value.match(!regexBirthdate)){
+}else if (!birthdate.value.match(regexBirthdate)){
 	setError(birthdate, 'Veuillez entrer une date de naissance valide.');
 	return false;
 }
@@ -105,6 +106,7 @@ if (!quantity.value) {
 	setSuccess(quantity);
 		return true;
 }
+
 function validLocation(){
 let radioCheck = document.querySelector('input[name = "location"]:checked');
 if(radioCheck === null){
@@ -131,9 +133,8 @@ function formFieldsValidation(element, method, event) {
     element.addEventListener(event, method);
 }
 
-// Form validation
+// For all fields validation
 function forAllFieldsValidation() {
-
 	validFirstName();
 	validLastName();
 	validEmail();
@@ -142,6 +143,7 @@ function forAllFieldsValidation() {
 	validLocation();
 	validCheckBox();
   }
+  
   function formValidation() {
 if (validFirstName() === true &&
 	validLastName() === true &&
@@ -204,6 +206,9 @@ function closeSubmit() {
 //close modal submit 
 closeModalSubmit[0].addEventListener('click', closeSubmit);
 closeBtnConfirmation.addEventListener('click', closeSubmit);
+
+
+
 
 
 

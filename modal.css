@@ -32,7 +32,6 @@ img {
 .topnav {
   overflow: hidden;
   margin: 3.5%;
-  /*display*/
   display: flex;
   justify-content: space-between;
 }
@@ -107,19 +106,7 @@ main {
   font-family: var(--font-slab);
 }
 
-/* Modal form */
-
-.button {
-  background: #fe142f;
-  margin-top: 0.5em;
-  padding: 1em;
-  color: #fff;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.button:hover {
+.btn-submit:hover {
   background: #3876ac;
 }
 
@@ -200,9 +187,8 @@ input {
 /* CONFIRMATION SUBMIT MODAL */
 .container-confirmation-submit {
   display: none;
-  background-color: rgba(35, 35, 35, 0.5);
+  background-color: rgba(237, 235, 241, 0.5);
   width: 100%;
-  height: 200vh;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -210,15 +196,22 @@ input {
   left: 0;
   right: 0;
   z-index: 3;
+  padding-bottom: 5%;
 }
 
 .submitted-form {
+  margin: 5% auto;
   width: 100%;
-  height: 100%;
-  left: 0;
-  margin: 0 auto;
-  position: fixed;
-  top: 0px;
+  max-width: 500px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
+  height: 130vh;
 }
 
 .close-modal-submit {
@@ -261,6 +254,8 @@ input {
   align-items: center;
   padding: 20px;
   text-align: center;
+  font-weight: 400;
+  font-size: 2rem;
 }
 
 #close-btn-confirmation {
@@ -271,10 +266,10 @@ input {
   font-size: 22px;
   background: #fe142f;
   display: flex;
-  margin: auto;
+  margin: 20% auto;
   padding: 2em;
   color: #fff;
-  padding: 0.75rem 2.5rem;
+  padding: 0.75rem 4rem;
   border-radius: 1rem;
   cursor: pointer;
 }
@@ -373,7 +368,7 @@ input {
   background-color: #fff;
 }
 .close:before {
-  transform: rotate(45deg); /*fermer le form*/
+  transform: rotate(45deg);
 }
 .close:after {
   transform: rotate(-45deg);
@@ -623,7 +618,6 @@ footer {
 @media screen and (max-width: 768px) {
   .topnav.responsive {
     position: relative;
-    /*collumn*/
     flex-direction: column;
   }
   .topnav.responsive .icon {
@@ -643,12 +637,20 @@ footer {
     float: right;
     display: block;
     margin-top: -65px;
-    color: #f10c0c; /**/
+    color: #f10c0c;
     background-color: #fff;
   }
-
   a.icon {
-    background: #fff; /**/
+    background: #fff;
+  }
+  /*form*/
+  .submitted-form {
+    margin: 20% auto;
+    border-radius: 10px 10px 0 0;
+    height: 100vh;
+  }
+  .container-confirmation-submit {
+    background-color: #11ffee00;
   }
 }
 
@@ -658,7 +660,7 @@ footer {
   }
   .topnav a.icon {
     display: none;
-    color: #f10c0c; /**/
+    color: #f10c0c;
     background-color: #fff;
   }
   .topnav a.icon {
@@ -667,14 +669,13 @@ footer {
     margin-top: -65px;
   }
   .bground > .content {
-    /**/
     margin-top: 20%;
     border-radius: 10px 10px 0 0;
     margin-bottom: 0;
   }
 
   .bground {
-    background-color: transparent; /**/
+    background-color: transparent;
   }
   /*main hero-headline*/
   .hero-headline {
@@ -685,6 +686,15 @@ footer {
     margin-top: 28px;
   }
   /*form*/
+  .submitted-form {
+    margin: 20% auto;
+    border-radius: 10px 10px 0 0;
+    height: 104vh;
+  }
+  .container-confirmation-submit {
+    background-color: #11ffee00;
+    height: 100vh;
+  }
   label,
   .text-label {
     font-size: 12px;
