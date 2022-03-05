@@ -14,10 +14,11 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeModalBtn = document.querySelectorAll("#close");
 
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// Launch modal form
+// Launch modal form 
 function launchModal() {
   modalbg.style.display = "block";
 }
@@ -124,10 +125,6 @@ if (checkbox1.checked === false) {
 	return true;
 }
 
-// Form field events
-function formFieldsValidation(element, method, event) {
-    element.addEventListener(event, method);
-}
 
 // For all fields validation
 function forAllFieldsValidation() {
