@@ -13,8 +13,6 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeModalBtn = document.querySelectorAll("#close");
-const closeBtn = document.getElementsByClassName('close');
-
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -29,7 +27,6 @@ function closeModal() {
 	modalbg.style.display = 'none';
   }
 closeModalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
-
 
 //form elements
 const form = document.getElementById("form");
@@ -127,7 +124,6 @@ if (checkbox1.checked === false) {
 	return true;
 }
 
-
 // Form field events
 function formFieldsValidation(element, method, event) {
     element.addEventListener(event, method);
@@ -157,13 +153,11 @@ if (validFirstName() === true &&
     return false;
 }
 
-
 // Send form
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (formValidation() == true) {
         displayModalSubmit();
-		console.log(e);
         document.querySelector('form').reset();
     } else {
         forAllFieldsValidation();
