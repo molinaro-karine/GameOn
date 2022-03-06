@@ -97,10 +97,14 @@ if( (!birthdate.value)) {
 }
 
 function validQuantity(){
+const quantityRegex = /^\d{1,2}$/;
 if (!quantity.value) {
 	setError(quantity, 'Veuillez renseigner à combien de tournois vous avez participé.');
 	return false;
-} 
+}else if (!quantity.value.match(quantityRegex)){
+	setError(quantity, 'Votre participation ne peut pas être inférieur  à 0 .');
+	return false;
+}
 	setSuccess(quantity);
 		return true;
 }
