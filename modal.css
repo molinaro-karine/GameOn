@@ -680,6 +680,9 @@ footer {
     border-radius: 10px 10px 0 0;
     height: 104vh;
   }
+  .submitted-form p {
+    height: 90%;
+  }
   .container-confirmation-submit {
     background-color: #11ffee00;
     height: 100vh;

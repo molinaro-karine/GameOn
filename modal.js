@@ -18,7 +18,7 @@ const closeModalBtn = document.querySelectorAll("#close");
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// Launch modal form 
+// Launch modal form lancer le formulaire
 function launchModal() {
   modalbg.style.display = "block";
 }
@@ -69,13 +69,13 @@ if (lastName.value.trim()=== '') {
 }
 
 function validEmail(){
-let mailRegex = /^[a-zA-Z][a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/;
+const mailRegex = /^[a-zA-Z][a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/;
 if(email.value ==='') {
 	setError(email, 'Veuillez entrer une adresse email')
 	return false;
 }else if (!email.value.match(mailRegex)){
 	setError(email, 'Veuillez entrer une adresse email valide.');
-	return true;
+	return false;
 }
 	setSuccess(email);
 	return true;
@@ -124,7 +124,6 @@ if (checkbox1.checked === false) {
 	setSuccess(checkbox1);
 	return true;
 }
-
 
 // For all fields validation
 function forAllFieldsValidation() {
@@ -197,8 +196,6 @@ function closeSubmit() {
 //close modal submit 
 closeModalSubmit[0].addEventListener('click', closeSubmit);
 closeBtnConfirmation.addEventListener('click', closeSubmit);
-
-
 
 
 
