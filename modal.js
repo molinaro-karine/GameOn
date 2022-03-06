@@ -102,7 +102,7 @@ if (!quantity.value) {
 	setError(quantity, 'Veuillez renseigner à combien de tournois vous avez participé.');
 	return false;
 }else if (!quantity.value.match(quantityRegex)){
-	setError(quantity, 'Votre participation ne peut pas être inférieur  à 0 .');
+	setError(quantity, 'Votre participation ne peut pas être inférieure à 0 .');
 	return false;
 }
 	setSuccess(quantity);
